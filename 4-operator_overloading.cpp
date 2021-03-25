@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string> 
 
 using namespace std;
@@ -36,7 +36,6 @@ public:
 
 		output << outputString;
 		return output;
-		//return wyjscie << "Nr indeksu: ";
 	};
 
 	friend istream& operator>> (istream& input, ComplexNumber& cn)
@@ -44,7 +43,6 @@ public:
 		input >> cn.re >> cn.im;
 
 		return input;
-		//return wyjscie << "Nr indeksu: ";
 	};
 
 	friend ComplexNumber operator + (ComplexNumber& cn1, ComplexNumber& cn2)
@@ -57,12 +55,10 @@ public:
 		return result;
 	}
 
-	friend ComplexNumber operator += (ComplexNumber& cn1, ComplexNumber& cn2)
+	ComplexNumber& operator += (ComplexNumber& cn2)
 	{
-		ComplexNumber result(cn1.re + cn2.re, cn1.im + cn2.im);
-
-		cn1 = result;
-		return result;
+		*this = *this + cn2;
+		return *this;
 
 	};
 
@@ -103,16 +99,15 @@ public:
 
 		ComplexNumber result(resultReal, resultIm);
 
-		//cn1 = result;
 		return result;
 	};
 
-	friend ComplexNumber operator -= (ComplexNumber& cn1, ComplexNumber& cn2)
+	ComplexNumber& operator -= (ComplexNumber& cn2)
 	{
-		ComplexNumber result(cn1.re - cn2.re, cn1.im - cn2.im);
+		//ComplexNumber result(re - cn2.re, im - cn2.im);
 
-		cn1 = result;
-		return result;
+		*this = *this - cn2;
+		return *this;
 
 	};
 
@@ -133,7 +128,7 @@ public:
 	//postfix
 	ComplexNumber operator -- (int)
 	{
-		return ComplexNumber (re, im--);
+		return ComplexNumber(re, im--);
 	}
 
 	friend ComplexNumber operator * (ComplexNumber& cn1, ComplexNumber& cn2)
@@ -147,11 +142,10 @@ public:
 		return result;
 	};
 
-	friend ComplexNumber operator *= (ComplexNumber& cn1, ComplexNumber& cn2)
+	ComplexNumber& operator *= ( ComplexNumber& cn2)
 	{
-		cn1 = cn1 * cn2;;
-		return cn1;
-
+		*this = *this * cn2;;
+		return *this;
 	};
 
 	friend ComplexNumber operator / (ComplexNumber& cn1, ComplexNumber& cn2)
@@ -169,12 +163,17 @@ public:
 
 	};
 
-	friend ComplexNumber operator /= (ComplexNumber& cn1, ComplexNumber& cn2)
+	ComplexNumber& operator = (ComplexNumber cn2)
 	{
+		re = cn2.re;
+		im = cn2.im;
+		return *this;
+	};
 
-		cn1 = cn1 / cn2;
-
-		return cn1;
+	ComplexNumber& operator /= (ComplexNumber cn2)
+	{
+		*this = *this / cn2;
+		return *this;
 	};
 
 	friend ComplexNumber operator ! (ComplexNumber& cn1)
@@ -190,7 +189,7 @@ public:
 
 	friend bool operator == (ComplexNumber& cn1, ComplexNumber& cn2)
 	{
-		return cn1.re == cn2.re && cn1.im == cn2.im ? true : false;
+		return cn1.re == cn2.re && cn1.im == cn2.im;
 	};
 
 	friend bool operator != (ComplexNumber& cn1, ComplexNumber& cn2)
@@ -202,8 +201,9 @@ public:
 
 int main()
 {
-	ComplexNumber num1(0,0);
-	ComplexNumber num2(0,0);
+	ComplexNumber num1(0, 0);
+	ComplexNumber num2(0, 0);
+
 
 
 	cout << "poddaj liczbe zespolona(num1): " << endl;
@@ -211,6 +211,7 @@ int main()
 	cout << "poddaj liczbe zespolona(num2): " << endl;
 	cin >> num2;
 
+	
 	cout << "---------------------- " << endl;
 
 	cout << "NUM1: \t" << num1 << endl;
@@ -257,6 +258,18 @@ int main()
 
 	cout << "NUM2--: \t" << num2-- << endl;
 	cout << "NUM2: \t\t" << num2 << endl;
+
+	cout << "---------------------- " << endl;
+
+	cout << "NUM1: \t" << num1 << endl;
+	cout << "NUM2: \t" << num2 << endl;
+
+
+	cout << "---------------------- " << endl;
+	num1 = num2;
+	cout << "NUM1=NUM2:"<< endl;
+	cout << "NUM1: \t" << num1 << endl;
+	cout << "NUM2: \t" << num2 << endl;
 
 }
 
