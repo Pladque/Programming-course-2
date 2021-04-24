@@ -1,166 +1,447 @@
 #include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
 
 #define LONG_SIZE sizeof(long) * 8
 
+const char* PATH = "ENTER YOUR PATH HERE";
+
 void printCharArr(char arr[], int size)
 {
-	for (int i = 0; i < size; i++)
-	{
-		printf("%c", arr[i]);
-	}
+    for (int i = 0; i < size; i++)
+    {
+        printf("%c", arr[i]);
+    }
 }
 
 void TaskZero()
 {
-	char word[100];
-	int charIndex = 0;
-	printf("Enter a characters: ");
+    char word[100];
+    int charIndex = 0;
+    printf("Enter a characters: ");
 
-	scanf_s("%c", &word[charIndex]);
-	while (word[charIndex] != '\n')
-	{
-		if ('a' <= word[charIndex])
-			word[charIndex] -= 32;
-		scanf_s("%c", &word[++charIndex]);
-	}
+    scanf("%c", &word[charIndex]);
+    while (word[charIndex] != '\n')
+    {
+        //if ('a' <= word[charIndex])
+        word[charIndex] -= 32 * ('a' <= word[charIndex]);
 
-	for (int i = 0; i < charIndex / 2; i++)
-	{
-		word[i] -= word[charIndex - 1 - i];
-		word[charIndex - 1 - i] += word[i];
-		word[i] = word[charIndex - 1 - i] - word[i];
-		//printf("%c", word[i]);
-	}
+        scanf("%c", &word[++charIndex]);
+    }
 
-	printCharArr(word, charIndex);
+    for (int i = 0; i < charIndex / 2; i++)
+    {
+        word[i] -= word[charIndex - 1 - i];
+        word[charIndex - 1 - i] += word[i];
+        word[i] = word[charIndex - 1 - i] - word[i];
+        //printf("%c", word[i]);
+    }
+
+    printCharArr(word, charIndex);
 }
 
 void TaskOne()
 {
-	char word[100];
-	char s1[] = "abcdefghijklmnopqrstuvwxyz";
-	char s2[] = "zyxwvutsrqponmlkjihgfedcba";
+    char word[100];
+    char s1[] = "abcdefghijklmnopqrstuvwxyz";
+    char s2[] = "zyxwvutsrqponmlkjihgfedcba";
 
-	int charIndex = 0;
-	printf("Enter a characters: ");
+    int charIndex = 0;
+    printf("Enter a characters: ");
 
-	scanf_s("%c", &word[charIndex]);
-	while (word[charIndex] != '\n')
-	{
-		scanf_s("%c", &word[++charIndex]);
-	}
+    scanf
+    ("%c", &word[charIndex]);
+    while (word[charIndex] != '\n')
+    {
+        scanf
+        ("%c", &word[++charIndex]);
+    }
 
-	for (int i = 0; i < charIndex; i++)
-	{
-		for (int j = 0; j < sizeof(s1) / sizeof(s1[0]); j++)
-		{
-			if (s1[j] == word[i])
-			{
-				word[i] = s2[j];
-				break;
-			}
-		}
-	}
+    for (int i = 0; i < charIndex; i++)
+    {
+        for (int j = 0; j < sizeof(s1) / sizeof(s1[0]); j++)
+        {
+            if (s1[j] == word[i])
+            {
+                word[i] = s2[j];
+                break;
+            }
+        }
+    }
 
-	printCharArr(word, charIndex);
+    printCharArr(word, charIndex);
 }
 
-void TaskThree()
+void TaskTwo()
 {
-	int nums[2];
-	char num1Str[100];
-	int length;
+    int nums[2];
+    char num1Str[100];
+    int length;
 
-	scanf_s("%d %d", &nums[0], &nums[1]);
+    scanf
+    ("%d %d", &nums[0], &nums[1]);
 
-	for (int i = 0; i < 2; i++)
-	{
-		length = 0;
+    for (int i = 0; i < 2; i++)
+    {
+        length = 0;
 
-		printf("Num %d:", i);
-		if (nums[i] < 0)
-			printf("minus ");
-		
-		while (nums[i] >= 1)
-		{
-			length++;
-			int digit = nums[i] % 10;
-			num1Str[100 - length] = digit + '0';
-			nums[i] /= 10;
-		}
+        printf("Num %d:", i);
+        if (nums[i] < 0)
+            printf("minus ");
 
-		for (int i = 0; i < length; i++)
-		{
-			switch (num1Str[100 - length + i])
-			{
-			case '0':
-				printf("zero ");
-				break;
-			case '1':
-				printf("one ");
-				break;
-			case '2':
-				printf("two ");
-				break;
-			case '3':
-				printf("three ");
-				break;
-			case '4':
-				printf("four ");
-				break;
-			case '5':
-				printf("five ");
-				break;
-			case '6':
-				printf("six ");
-				break;
-			case '7':
-				printf("seven ");
-				break;
-			case '8':
-				printf("eight ");
-				break;
-			case '9':
-				printf("nine ");
-				break;
-			default:
-				printf("NAN");
-			}
-		}
+        while (nums[i] >= 1)
+        {
+            length++;
+            int digit = nums[i] % 10;
+            num1Str[100 - length] = digit + '0';
+            nums[i] /= 10;
+        }
 
-		printf("\n");
-	}
+        for (int i = 0; i < length; i++)
+        {
+            switch (num1Str[100 - length + i])
+            {
+                case '0':
+                    printf("zero ");
+                    break;
+                case '1':
+                    printf("one ");
+                    break;
+                case '2':
+                    printf("two ");
+                    break;
+                case '3':
+                    printf("three ");
+                    break;
+                case '4':
+                    printf("four ");
+                    break;
+                case '5':
+                    printf("five ");
+                    break;
+                case '6':
+                    printf("six ");
+                    break;
+                case '7':
+                    printf("seven ");
+                    break;
+                case '8':
+                    printf("eight ");
+                    break;
+                case '9':
+                    printf("nine ");
+                    break;
+                default:
+                    printf("NAN");
+            }
+        }
+
+        printf("\n");
+    }
 }
 
-int countzeros(long num)
+int getValueOfRomanLetter(char letter)
 {
-	int zeros = 0;
 
-	for (int i = 0; i < LONG_SIZE; i++)
-	{
-		if (!(num & 1))   zeros++;
-		num >>= 1;
-	}
+    switch (letter)
+    {
+        case 'I':
+            return 1;
+        case 'V':
+            return 5;
+        case 'X':
+            return 10;
+        case 'L':
+            return 50;
+        case 'C':
+            return 100;
+        case 'D':
+            return 500;
+        case 'M':
+            return 1000;
+        default:
+            return 0;
+    }
 
-	return zeros;
 }
 
 void TaskFour()
 {
-	int num;
+    printf(">> ");
 
-	/* Input number from user */
-	printf(">> ");
-	scanf_s("%d", &num);
+    char word[100];
+    int charIndex = 0;
+    scanf
+    ("%c", &word[charIndex]);
+    while (word[charIndex] != '\n')
+    {
+        if ('a' <= word[charIndex])
+            word[charIndex] -= 32;
+        scanf
+        ("%c", &word[++charIndex]);
+    }
 
-	printf("\nzeros num: %d ",countzeros(num));
+    // Roman -> Arabic
+    int i = charIndex;
+    int newArNum = 0;
+    int lastNum = -1;
+    while (i-- > 0)
+    {
+        int value = getValueOfRomanLetter(word[i]);
+        if (value >= lastNum)
+        {
+            lastNum = value;
+            newArNum += value;
+        }
+        else
+            newArNum -= value;
+    }
+
+    printf("\n %d ", newArNum);
 }
+
+int countzeros(long num)
+{
+    int zeros = 0;
+    int zerosTempHolder = 0;
+    for (int i = 0; i < LONG_SIZE; i++)
+    {
+        if (num & 1)
+        {
+            zeros += zerosTempHolder;
+            zerosTempHolder = 0;
+        }
+        if (!(num & 1))
+            zerosTempHolder++;
+        num >>= 1;
+    }
+
+    return zeros;
+}
+
+void TaskThree()
+{
+    int num;
+
+    /* Input number from user */
+    printf(">> ");
+    scanf("%d", &num);
+
+    printf("\nzeros num: %d ",countzeros(num));
+}
+
+void TaskFive()
+{
+	FILE* fp;
+	fp = fopen("settlement.txt", "r");
+
+	if (!fp)
+	{
+		printf("file can't be read\n");
+		return;
+	}
+
+	//skipping words
+	char trash;
+	while (fscanf(fp, "%c", &trash) == 1 && trash != ' ') {}
+
+    float price = 0;
+	float prices = 0;
+	while (fscanf(fp, "%f", &price) == 1)
+	{
+		prices += price;
+
+		//skipping words
+		while (fscanf(fp, "%c", &trash) == 1 && trash != ' ') {}
+
+        printf("%f", price);
+	}
+	fclose(fp);
+
+	fp = fopen("bills.txt", "w");
+
+	fprintf(fp, "%f", prices);
+
+	fclose(fp);
+}
+
+void TaskSix()
+{
+    FILE* fp;
+    fp = fopen("C:\\Users\\plate\\OneDrive\\UJ\\2. sem\\P2\\BACA\\untitled\\settlement.txt", "r");
+
+    if (!fp)
+    {
+        printf("file can't be read\n");
+        return;
+    }
+
+    //skipping words
+    char trash;
+    while (fscanf(fp, "%c", &trash) == 1 && trash != ' ') {}
+
+    float price = 0;
+    float prices = 0;
+    while (fscanf(fp, "%f", &price) == 1)
+    {
+        prices += price;
+
+        //skipping words
+        while (fscanf(fp, "%c", &trash) == 1 && trash != ':') {}
+
+        printf("%f", price);
+    }
+    fclose(fp);
+
+    fp = fopen("C:\\Users\\plate\\OneDrive\\UJ\\2. sem\\P2\\BACA\\untitled\\bills.txt", "w");
+
+    fprintf(fp, "%f", prices);
+
+    fclose(fp);
+}
+
+
+void TaskSeven()    // && task 8
+{
+    char name[100];
+    int charIndex = 0;
+    printf("Enter an input file name: ");
+
+    scanf("%c", &name[charIndex]);
+    while (name[charIndex] != '\n'){}
+
+    char filePath[200];
+    strcpy(filePath, PATH);
+    strcat(filePath, name);
+
+    FILE* fp;
+    fp = fopen(filePath, "r");
+
+    if (!fp)
+    {
+        printf("file can't be read\n");
+        return;
+    }
+
+
+    float wordCounter = 0;
+    float tempWordLen = 0;
+    float allWordsLen = 0;
+    float minLen = 9999999;
+    float maxLen = 0;
+
+
+    char letter;
+    char lastLett;
+    while (fscanf(fp, "%c", &letter) == 1)
+    {                                               //zabezpieczenie przed podwojna spacja
+        if((letter == ' ' || letter == '\n' ) &&  lastLett != letter)
+        {
+            if(minLen > tempWordLen)
+                minLen = tempWordLen;
+            if(maxLen < tempWordLen)
+                maxLen = tempWordLen;
+
+            allWordsLen += tempWordLen;
+            wordCounter++;
+            tempWordLen = 0;
+
+
+        }
+        else
+            tempWordLen++;
+        lastLett = letter;
+
+    }
+    fclose(fp);
+
+    fp = fopen("C:\\Users\\plate\\OneDrive\\UJ\\2. sem\\P2\\BACA\\untitled\\statistics.dat", "w");
+
+    fprintf(fp, "WORDS: %f \n", wordCounter);
+    fprintf(fp, "AVG: %f \n", allWordsLen / wordCounter);
+    fprintf(fp, "MIN: %f \n", minLen);
+    fprintf(fp, "MAX: %f \n", maxLen);
+
+    fclose(fp);
+}
+
+void taskEleven()
+{
+    int size;
+    scanf("Enter size: %d", &size);
+
+    srand(time(NULL));
+    int r = rand() % 23;
+
+    // deklarowanie sprawia jakies problemy ze  w petli wychodiz poza zakres
+    int* array = (int*) malloc(size * sizeof (int));
+
+    short found = 0;
+    for(int i = 0; i < size; i++)
+    {
+        r = rand() % 23;
+        found = 0;
+        for(int j = 0; j< i; i++)
+        {
+            if( array[j] == r)
+            {
+                found = 1;
+                break;
+            }
+
+        }
+
+        if(!found)
+            array[i]  = r;
+    }
+
+    free(array);
+
+}
+
+void task13()
+{
+    int size;
+    scanf("Enter size: %d", &size);
+
+    srand(time(NULL));
+    int r = rand() % 23;
+
+    // deklarowanie sprawia jakies problemy ze  w petli wychodiz poza zakres
+    int** array2D = (int**) malloc(size * sizeof (int*));
+    int* array = (int*) malloc(size * sizeof (int));
+
+    short found = 0;
+
+    for(int j = 0;j < size; j++)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            r = rand() % 23;
+            array[i] = r;
+        }
+
+        array2D[j] = array;
+        array = NULL;
+    }
+
+
+    for(int j = 0;j < size; j++)
+    {
+        free(array2D[j]);
+        array2D[j] = NULL;
+    }
+
+    free(array2D);
+
+
+}
+
 
 int main()
 {
+    taskEleven();
 
-	//TaskZero();
-	TaskFour();
-
-	return 0;
+    return 0;
 }
