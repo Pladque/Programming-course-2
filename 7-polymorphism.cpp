@@ -56,10 +56,6 @@ void showShape(Shape* toDisplay)
 	toDisplay->draw();
 }
 
-// wirtualna klasa ktora przeladowuje funkcje 
-// dziecko kotre dziedziczy i napisauje ktoras z tych funkcji
- 
-
 /////////////////////// 2 /////////////////
 
 class Rodent
@@ -363,6 +359,8 @@ public:
 
 };
 
+// wirtualna klasa ktora przeladowuje funkcje 
+// dziecko kotre dziedziczy i nadpisuje ktoras z tych funkcji
 
 ///////////// + /////////////
 class AllAdder
@@ -410,6 +408,7 @@ public:
 
 int main()
 {
+	//////////////////// 1 ///////////////////
 	Circle circle(5);
 	Triangle triangle(1, 8, 7);
 	Square square(2, 2);
@@ -418,6 +417,7 @@ int main()
 	showShape(&triangle);
 	showShape(&square);
 	cout << endl << endl << endl;
+	
 	//////////////////// 2 /////////////////
 
 	vector<Rodent*> rodents;
@@ -441,6 +441,7 @@ int main()
 	}
 
 	cout << endl << endl << endl;
+	
 	/////////////////// 3 /////////////////
 
 	vector<AirCraft*> planes = vector<AirCraft*>();
@@ -491,6 +492,7 @@ int main()
 
 
 	////////////  + /////////////
+	
 	cout << endl << endl << "+ Task" << endl;
 	StringAdder stringAdder;
 
